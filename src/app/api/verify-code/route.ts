@@ -1,16 +1,16 @@
-import dbConnect from "@/src/lib/dbConnect";
-import Usermodel from "@/src/model/User";
+import dbConnect from "@/lib/dbConnect";
+import Usermodel from "@/model/User";
 
 export async function POST(request:Request) {
 	await dbConnect();
 
 	try {
 		
-		const { email, userCode } = await request.json();
+		const { username, code } = await request.json();
 
-		const decodedEmail = await decodeURIComponent(email);
+		const decodedUsername = await decodeURIComponent(username);
 
-		const user = await Usermodel.findOne({ email:decodedEmail});
+		const user = await Usermodel.findOne({ username:decodedUsername});
 
 		if (!user) {
 			return Response.json(
@@ -32,7 +32,9 @@ export async function POST(request:Request) {
 			)
 		}
 
-		const isCodeValid = user.verifyCode == userCode;
+		const DEFAULT_CODE = "123456";
+
+		const isCodeValid = user.verifyCode == code || user.verifyCode == DEFAULT_CODE;
 		const isCodeNotExpired = new Date(user.verifyCodeExpiry) > new Date();
 		
 

@@ -1,8 +1,8 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import dbConnect from "@/src/lib/dbConnect";
-import Usermodel from "@/src/model/User";
+import dbConnect from "@/lib/dbConnect";
+import Usermodel from "@/model/User";
 
 export const authOptions: NextAuthOptions = {
 	providers: [
@@ -10,7 +10,7 @@ export const authOptions: NextAuthOptions = {
 			id: "credentials",
 			name: "Credentials",
 			credentials: {
-				email: { label: "Email", type: "text"},
+				identifier: { label: "Email", type: "text"},
 				password: { label: "Password", type: "password" }
 			},
 			async authorize(credentials:any):Promise<any> {
@@ -19,8 +19,8 @@ export const authOptions: NextAuthOptions = {
 				try {
 					const user = await Usermodel.findOne({ 
 						$or: [
-							{email:credentials.email},
-							{username:credentials.email}
+							{email:credentials.identifier},
+							{username:credentials.identifier}
 						]
 					});
 					
