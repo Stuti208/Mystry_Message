@@ -4,7 +4,6 @@ import "./globals.css";
 import AuthProvider from "../context/AuthProvider";
 import { Toaster } from "@/components/ui/toast"
 
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -31,7 +30,8 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <AuthProvider>
-        <body className="min-h-full flex flex-col">{children}
+        <body className="min-h-full flex flex-col">
+          {children}
           <Toaster/>
           </body>
       </AuthProvider>
