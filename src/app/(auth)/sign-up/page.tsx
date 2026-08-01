@@ -76,6 +76,7 @@ export default function SignIn() {
 
       if (response.data.success) {
         toast.add({
+          type:"success",
           title: 'Success',
           description: response.data.message,
 		});
@@ -83,6 +84,7 @@ export default function SignIn() {
         router.replace(`/verify/${username}`);
       } else {
         toast.add({
+          type:"error",
           title: 'Signup failed',
           description: response.data.message,
         });
@@ -91,6 +93,7 @@ export default function SignIn() {
       const axiosError = error as AxiosError<ApiResponse>;
       const errorMessage = axiosError.response?.data.message;
       toast.add({
+        type:"error",
         title: 'Signup failed',
         description: errorMessage,
       });

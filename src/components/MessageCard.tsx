@@ -55,10 +55,25 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
     }
   };
 
+
+  const formatted = new Date(message.createdAt).toLocaleString('en-US', {
+    timeZone: 'Asia/Kolkata',
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  });
+
+  const dateString=formatted.replace('at', ' ');
+
+
   return (
+    
     <Card>
       <CardHeader>
-        <CardTitle>Card Title</CardTitle>
+        <CardTitle>{message.content}</CardTitle>
         <AlertDialog>
           <AlertDialogTrigger
             render={
@@ -83,13 +98,12 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
-        <CardDescription>Card Description</CardDescription>
-        <CardAction>Card Action</CardAction>
+        <CardDescription>{dateString}</CardDescription>
       </CardHeader>
 
-      <CardContent>
+      {/* <CardContent>
         <p>Card Content</p>
-      </CardContent>
+      </CardContent> */}
     </Card>
   );
 };

@@ -52,6 +52,7 @@ export default function Dashboard() {
       const axiosError = error as AxiosError<ApiResponse>;
       const errorMessage = axiosError.response?.data.message;
       toast.add({
+        type: 'error',
         title: 'Error',
         description: errorMessage || 'Failed to fetch message settings',
       });
@@ -71,6 +72,7 @@ export default function Dashboard() {
 
         if (refresh) {
           toast.add({
+            type: 'success',
             title: 'Refreshed Messages',
             description: 'Showing latest messages',
           });
@@ -79,6 +81,7 @@ export default function Dashboard() {
         const axiosError = error as AxiosError<ApiResponse>;
         const errorMessage = axiosError.response?.data.message;
         toast.add({
+          type: 'error',
           title: 'Error',
           description: errorMessage || 'Failed to fetch messages',
         });
@@ -105,38 +108,39 @@ export default function Dashboard() {
       setValue('acceptMessages', !acceptMessages);
 
       toast.add({
+        type: 'success',
         title: response.data.message,
       });
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       const errorMessage = axiosError.response?.data.message;
       toast.add({
+        type: 'error',
         title: 'Error',
         description: errorMessage || 'Failed to fetch messages',
       });
     }
-	};
+  };
 
-	if (!session || !session.user) return <div>Please Login</div>;
-	
-	const { username } = session?.user as User;
-	const baseUrl = `${window.location.origin}`
-	const profileUrl = `${baseUrl}/u/${username}`
-	
-	const copyToClipboard = () => {
-		navigator.clipboard.writeText(profileUrl);
-		toast.add({
-			title:"URL copied"
-		})
-	}
+  if (!session || !session.user) return <div>Please Login</div>;
 
-  
+  const { username } = session?.user as User;
+  const baseUrl = `${window.location.origin}`;
+  const profileUrl = `${baseUrl}/u/${username}`;
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(profileUrl);
+    toast.add({
+      type: 'success',
+      title: 'URL copied',
+    });
+  };
 
   return (
     <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded w-full max-w-6xl">
-		  <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
-		  
-		  {/* copy link section */}
+      <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
+
+      {/* copy link section */}
       <div className="mb-4">
         <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>
         {''}
@@ -151,7 +155,7 @@ export default function Dashboard() {
           <Button onClick={copyToClipboard}>Copy</Button>
         </div>
       </div>
-		  {/* accept messages toggle */}
+      {/* accept messages toggle */}
       <div className="mb-4">
         <Switch
           {...register('acceptMessages')}
@@ -165,7 +169,7 @@ export default function Dashboard() {
         </span>
       </div>
       <Separator />
-		  {/* refresh button */}
+      {/* refresh button */}
       <Button
         className="mt-4"
         variant="outline"
@@ -180,17 +184,17 @@ export default function Dashboard() {
           <RefreshCcw className="h-4 w-4" />
         )}
       </Button>
-		  {/* messages section */}
+      {/* messages section */}
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
         {messages.length > 0 ? (
-				  messages.map((message, index) => {
-					  return (
-						  <MessageCard
-							  key={message._id.toString()}
-							  message={message}
-							  onMessageDelete={handleMessageDelete}
-						  />
-					  );
+          messages.map((message, index) => {
+            return (
+              <MessageCard
+                key={message._id.toString()}
+                message={message}
+                onMessageDelete={handleMessageDelete}
+              />
+            );
           })
         ) : (
           <p>No messages to display</p>

@@ -37,23 +37,18 @@ export default function VerifyAccount() {
         code: data.code,
       });
 
-      if (response.data.success) {
-        toast.add({
-          title: 'Success',
-          description: response.data.message,
-        });
+      toast.add({
+        type: 'success',
+        title: 'Success',
+        description: response.data.message,
+      });
 
-        router.replace('/sign-in');
-      } else {
-        toast.add({
-          title: 'Verification failed',
-          description: response.data.message,
-        });
-      }
+      router.replace('/sign-in');
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       const errorMessage = axiosError.response?.data.message;
       toast.add({
+        type: 'error',
         title: 'Verification failed',
         description: errorMessage,
       });

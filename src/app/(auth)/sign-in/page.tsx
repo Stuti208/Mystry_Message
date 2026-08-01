@@ -52,6 +52,7 @@ export default function SignIn() {
 
       if (result?.error) {
         toast.add({
+          type:"error",
           title: 'Login failed',
           description: "Incorrect email or password",
         });
@@ -63,7 +64,8 @@ export default function SignIn() {
         router.replace('/dashboard')
       }
     } catch (error) {
-        toast.add({
+      toast.add({
+          type:"error",
           title: 'Login failed',
           description: error as string,
         });
