@@ -1,17 +1,52 @@
 [
 	{
 		"title": "Message from User123",
-		"content":"Hey, how are you doing today?",
-		"received":"10 minutes ago"
+		"content": "Hey, how are you doing today?",
+		"received": "10 minutes ago"
 	},
 	{
 		"title": "Message from SecretAdmirer",
-		"content":"I really liked your recent post!",
-		"received":"2 hours ago"
+		"content": "I really liked your recent post!",
+		"received": "2 hours ago"
 	},
 	{
 		"title": "Message from MystryGuest",
-		"content":"Do you have any book recommendation?",
-		"received":"1 day ago"
+		"content": "Do you have any book recommendation?",
+		"received": "1 day ago"
+	},
+	{
+		"title": "Message from QuietObserver",
+		"content": "You explain things way better than you think you do.",
+		"received": "3 hours ago"
+	},
+	{
+		"title": "Message from AnonFriend22",
+		"content": "Why do you always leave the group chat on read?",
+		"received": "5 hours ago"
+	},
+	{
+		"title": "Message from NightOwl",
+		"content": "Your energy in meetings is honestly underrated.",
+		"received": "8 hours ago"
+	},
+	{
+		"title": "Message from RandomPasserby",
+		"content": "Not gonna lie, I've been meaning to say this for weeks.",
+		"received": "1 day ago"
+	},
+	{
+		"title": "Message from HiddenWellWisher",
+		"content": "Do you actually enjoy what you're doing, or just used to it?",
+		"received": "2 days ago"
+	},
+	{
+		"title": "Message from JustSomeone",
+		"content": "You seem way more put together than you probably feel.",
+		"received": "3 days ago"
+	},
+	{
+		"title": "Message from Anonymous101",
+		"content": "Loved the way you handled that situation last week.",
+		"received": "4 days ago"
 	}
 ]
