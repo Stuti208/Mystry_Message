@@ -32,9 +32,9 @@ export async function POST(request:Request) {
 			)
 		}
 
-		const DEFAULT_CODE = "123456";
+		// const DEFAULT_CODE = "123456";
 
-		const isCodeValid = user.verifyCode == code || user.verifyCode == DEFAULT_CODE;
+		const isCodeValid = user.verifyCode == code;
 		const isCodeNotExpired = new Date(user.verifyCodeExpiry) > new Date();
 		
 
