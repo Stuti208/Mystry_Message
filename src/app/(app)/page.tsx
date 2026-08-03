@@ -63,7 +63,7 @@ export default function Home() {
     <div className="flex items-center gap-2 bg-[#EFE6D3] border border-[#8C8574]/20 rounded-lg px-3 py-2 font-mono text-xs text-[#2B2A28]/70">
       <LinkIcon className="w-3.5 h-3.5 text-[#B23A48] shrink-0" />
       <span className="truncate">
-        mystry-message.com/u/<span className="text-[#B23A48]">username</span>
+                {`${window.location.host}/u/`}<span className="text-[#B23A48]">username</span>
       </span>
     </div>
   </div>
