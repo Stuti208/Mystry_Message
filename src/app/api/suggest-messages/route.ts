@@ -4,56 +4,60 @@ import { groq } from '@ai-sdk/groq';
 export async function POST(req: Request) {
   const { content } = await req.json();
 
-  const prompt = `Generate 3 short anonymous feedback message suggestions for someone to send to a user.
-  ${content ? `The sender wants to say something like this (use it as the core idea, but rephrase it): "${content}"` : 'No specific idea was given — generate general, kind, constructive feedback starters.'}
+  const prompt = `Generate 3 short anonymous message suggestions someone could send to another person.
 
-  Write like a real person typing anonymous feedback, NOT like an AI or corporate email.
+  ${content 
+    ? `They're trying to say something like this — keep the same idea, just reword it naturally: "${content}"` 
+    : 'They haven\'t decided what to say yet. Generate 3 standalone anonymous messages with zero prior context — mix of genuine questions (curious, not creepy) and honest feedback/opinions about the person. Examples of the type: a question about a choice they made, an honest opinion about how they come across, feedback on something specific they do. Each should stand completely alone, like the only message someone receives.'}
+
+  Write like a normal person quickly typing a message — not like an AI trying to sound smart or polished.
 
   Style rules:
-  - Casual, conversational tone — like a text message, not a performance review
-  - Use simple everyday words, contractions (don't, you're, it's), and natural phrasing
-  - Avoid overly polished, symmetric, or "perfect" sentence structures
-  - Skip corporate/therapy-speak like "I wanted to reach out," "I appreciate you," "constructive feedback," "moving forward," "just my two cents," etc.
-  - Vary sentence length and structure between the 3 suggestions — don't make them all the same shape
-  - It's okay to be a little blunt, informal, or imperfect — real feedback isn't always smooth
-  - No exclamation-point enthusiasm or fake positivity padding
-  - Don't start every message the same way (e.g. don't start all 3 with "Hey" or "I think")
+  - Short, casual, natural phrasing — like something typed in 5 seconds, not drafted
+  - Use simple words and contractions (don't, you're, it's, gonna)
+  - No poetic language, no metaphors, no fancy or "elevated" vocabulary
+  - No corporate or therapy-speak: avoid "I appreciate," "just wanted to say," "constructive feedback," "reach out," "moving forward"
+  - No exclamation-heavy enthusiasm — keep it flat and normal, like texting
+  - Don't reference "you said," "earlier," "our conversation," or anything implying prior context
+  - Vary the 3 suggestions — mix questions and statements, different lengths, different openers
+  - It's fine if it sounds a little blunt, imperfect, or unpolished — real messages aren't always smooth
 
   Content rules:
-  - Each message 1-3 sentences
+  - Each message 1 short sentence, occasionally 2
   - No hate speech, harassment, or personal attacks
-  - Should be honest and specific, even if a bit critical — but never cruel
+  - When asking a question, make it genuinely answerable and relevant (about their habits, choices, personality) — not vague or generic
+  - When giving feedback, be specific and honest, even if mildly critical — never cruel
+  - Must stand completely alone with no assumed context
   - Return ONLY a JSON object like {"suggestions": ["...", "...", "..."]}, nothing else, no markdown formatting`;
-	
+    
   try {
     const { text } = await generateText({
-      model: groq('llama-3.1-8b-instant'), 
+      model: groq('llama-3.1-8b-instant'),
       prompt,
       temperature: 0.8,
       maxOutputTokens: 400,
     });
 
-	const cleaned = text.replace(/```json|```/g, '').trim();
-	const parsed = JSON.parse(cleaned);
+    const cleaned = text.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(cleaned);
 
     const suggestions = Array.isArray(parsed) ? parsed : parsed.suggestions;
 
-	return Response.json(
-		{
-			success: true,
-			suggestions
-		},
-		{ status: 200 }
-	);
-	  
+    return Response.json(
+      {
+        success: true,
+        suggestions,
+      },
+      { status: 200 }
+    );
   } catch (err) {
     console.error(err);
     return Response.json(
-		{
-			success: false,
-			message:"Failed to generate suggestions"
-		},
-		{ status: 500 }
-	);
+      {
+        success: false,
+        message: 'Failed to generate suggestions',
+      },
+      { status: 500 }
+    );
   }
 }
