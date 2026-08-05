@@ -29,7 +29,7 @@ export default function Home() {
             <span className="text-[#B23A48]">Stay who you are — unknown.</span>
           </h1>
           <p className="mt-4 text-base md:text-lg text-[#2B2A28]/60">
-            Mystry Message is where honest words travel without a name attached.
+            Mystery Message is where honest words travel without a name attached.
           </p>
 
           {/* <div className="flex items-center justify-center gap-3 mt-8">
@@ -63,7 +63,7 @@ export default function Home() {
     <div className="flex items-center gap-2 bg-[#EFE6D3] border border-[#8C8574]/20 rounded-lg px-3 py-2 font-mono text-xs text-[#2B2A28]/70">
       <LinkIcon className="w-3.5 h-3.5 text-[#B23A48] shrink-0" />
       <span className="truncate">
-                mystry-message-245t.vercel.app/u/<span className="text-[#B23A48]">username</span>
+                mystery-message-245t.vercel.app/u/<span className="text-[#B23A48]">username</span>
       </span>
     </div>
   </div>
@@ -118,7 +118,7 @@ export default function Home() {
       </main>
 
       <footer className="flex items-center justify-center py-6 text-sm text-[#8C8574] bg-[#EFE6D3] border-t border-[#8C8574]/20">
-        © {new Date().getFullYear()} Mystry Message. All rights reserved.
+        © {new Date().getFullYear()} Mystery Message. All rights reserved.
       </footer>
     </>
   );

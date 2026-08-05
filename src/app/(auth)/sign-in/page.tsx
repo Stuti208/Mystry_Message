@@ -81,7 +81,7 @@ export default function SignIn() {
             Welcome back
           </p>
           <h1 className="font-display text-3xl md:text-4xl font-bold text-black mb-2">
-            Sign in to Mystry Message
+            Sign in to Mystery Message
           </h1>
           <p className="text-sm text-gray-600">
             Log in to check what's waiting in your inbox.

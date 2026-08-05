@@ -17,7 +17,7 @@ const Navbar = () => {
           href="/"
           className="text-2xl md:text-3xl font-extrabold tracking-tight text-black mb-2 md:mb-0"
         >
-          Mystry Message
+          Mystery Message
         </Link>
         {status === 'loading' ? (
           <div className="h-10 w-40" />

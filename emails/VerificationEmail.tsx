@@ -52,7 +52,7 @@ export default function VerificationEmail({username,otp}: VerificationEmailProps
               <Text className="mt-8 text-base text-gray-700">
                 Sincerely,
                 <br />
-                <span className="font-semibold">Mystry Message</span>
+                <span className="font-semibold">Mystery Message</span>
               </Text>
             </Section>
           </Container>

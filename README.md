@@ -1,1 +1,1 @@
-Mystry Message
+Mystery Message

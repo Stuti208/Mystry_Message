@@ -21,7 +21,7 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mystry Message — Anonymous, Honest Feedback",
+  title: "Mystery Message — Anonymous, Honest Feedback",
   description:
     "Send and receive anonymous messages. Honest feedback needs no name attached.",
 };

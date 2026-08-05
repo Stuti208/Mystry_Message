@@ -115,7 +115,7 @@ export default function SignUp() {
             Create account
           </p>
           <h1 className="font-display text-3xl md:text-4xl font-bold text-black mb-2">
-            Join Mystry Message
+            Join Mystery Message
           </h1>
           <p className="text-sm text-gray-600">
             Get your own link. Start receiving honest words today.
