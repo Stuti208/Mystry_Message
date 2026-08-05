@@ -7,19 +7,21 @@ import { User } from 'next-auth';
 import { Button } from './ui/button';
 
 const Navbar = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const user: User = session?.user as User;
 
   return (
     <nav className="p-4 md:p-6 bg-white shadow-sm border-b border-gray-100">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-3 md:gap-0">
-        <a
+        <Link
+          href="/"
           className="text-2xl md:text-3xl font-extrabold tracking-tight text-black mb-2 md:mb-0"
-          href="#"
         >
           Mystry Message
-        </a>
-        {session ? (
+        </Link>
+        {status === 'loading' ? (
+          <div className="h-10 w-40" />
+        ) : session ? (
           <div className="flex items-center gap-4">
             <span className="text-lg text-gray-600">
               Welcome,{' '}
